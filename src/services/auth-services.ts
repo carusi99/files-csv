@@ -13,7 +13,7 @@ export async function validateCredentials(
     if (name === undefined) {
         throw new Error("El nombre de usuario no está definido.");
       }    
-    const user = await db.getUserByUsername(name);
+    const user = await db.getUserByName(name);
     if (!user) {
       throw new ApiError("Credenciales incorrectas", 400);
     }

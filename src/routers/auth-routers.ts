@@ -1,7 +1,9 @@
 import express from "express";
 import { validateCredentials } from "../services/auth-services";
 import jwt from "jsonwebtoken";
+import { jwtSecret } from "../middlewares/authenticate";
 const authRouter = express.Router();
+
 
 authRouter.post("/login", async (req, res, next) => {
     try {
