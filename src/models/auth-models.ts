@@ -16,7 +16,7 @@ export const userSchema = z.object({
   email: z.string({
     required_error: "Email es requerido",
     invalid_type_error: "Email debe ser un string",
-  }).email({ message: "El formato del correo electrónico es inválido" }).optional(),
+  }).email({ message: "El formato del correo electrónico es inválido" }),
 
   role: z.enum(["admin", "user"], {
     errorMap: () => ({ message: "El rol debe ser admin o user" }),
