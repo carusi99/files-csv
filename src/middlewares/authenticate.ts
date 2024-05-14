@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-export const jwtSecret = "ultra-secret";
+export const jwtSecret = "ultra-mega-secret";
 
 export function authenticateHandler(
   req: Request,

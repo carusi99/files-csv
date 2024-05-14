@@ -1,7 +1,7 @@
 import { app } from "./app";
 import { pool } from "./db";
 
-const port = 8000;
+const port = 5000;
 
 // Manejar cierre de la aplicación
 const gracefulShutdown = () => {
