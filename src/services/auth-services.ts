@@ -9,11 +9,9 @@ import { ApiError } from "../middlewares/error";
 export async function validateCredentials(
     credentials: UserParams
   ): Promise<User> {
-    const { name, password } = credentials;
-    if (name === undefined) {
-        throw new Error("El nombre de usuario no está definido.");
-      }    
-    const user = await db.getUserByName(name);
+    const { email, password } = credentials;  
+    const user = await db.getUserByName(email);
+    
     if (!user) {
       throw new ApiError("Credenciales incorrectas", 400);
     }
@@ -22,4 +20,5 @@ export async function validateCredentials(
       throw new ApiError("Credenciales incorrectas", 400);
     }
     return user;
+    
   }

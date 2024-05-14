@@ -1,11 +1,11 @@
 import { User } from "../models/auth-models";
 import * as db from "../db";
 
-//OBTIENE EL USUARIO POR SU NOMBRE
+//OBTIENE EL USUARIO POR EL EMAIL
 export async function getUserByName(
-    name: string
+    email: string
   ): Promise<User | undefined> {
     return (
-      await db.query("SELECT * FROM users WHERE name=$1", [name])
+      await db.query("SELECT * FROM users WHERE email=$1", [email])
     ).rows[0];
   }
