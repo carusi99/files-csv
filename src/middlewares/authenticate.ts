@@ -16,7 +16,7 @@ export const jwtSecret = "ultra-mega-secret";
 
 export function authenticateHandler(
   req: Request,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ) {
   console.log("Middleware authenticateHandler alcanzado");
@@ -41,6 +41,7 @@ export function authenticateHandler(
     next();
   } catch (error: any) {
     console.log("Error al verificar el token:", error.message);
-    return next(new ApiError("No autorizado", 401));
+    const errorMessage = "No autorizado";
+    res.status(401).json({ ok: false, data: errorMessage });
   }
 }
