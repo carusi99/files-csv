@@ -3,6 +3,8 @@ import { processCSV } from '../data/upload-data';
 import { authenticateHandler } from '../middlewares/authenticate';
 import { authorize } from '../middlewares/authorize';
 import * as db from '../db';
+import { truncate } from 'fs';
+import { truncateTable } from '../db/utils';
 const path = require('path');
 
 const uploadRouter = express.Router();
@@ -16,6 +18,7 @@ uploadRouter.post('/upload', authenticateHandler, authorize('admin'), async (req
     
     // Inserta los usuarios válidos en la base de datos
     for (const user of success) {
+      await truncateTable('client'); 
       await db.query(
         'INSERT INTO client (name, email, age) VALUES ($1, $2, $3)',
         [user.name, user.email, user.age]

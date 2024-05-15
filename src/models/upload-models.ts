@@ -25,8 +25,6 @@ export const clientSchema = z.object({
       }).default("user"),
 });
 
-
-
 export type ClientParams = z.infer<typeof clientSchema>;
 
 export type Client = ClientParams & { id: number };
