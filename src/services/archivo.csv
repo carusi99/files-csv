@@ -1,0 +1,10 @@
+name,email,age
+Juan Perez,juan.perez@example.com,28
+Maria Lopez,maria.lopez@example.com,35
+Carlos Gomez,carlos.gomez@example.com,42
+Ana Martinez,ana.martinez@example.com,30
+,invalidemail.com,25
+Roberto Hernandez,roberto.hernandez@example.com,18
+Luisa Fernandez,luisa.fernandez@example.com,50
+Pedro Ramirez,pedroramirezexample.com,abc
+Andrea Garcia,andreagarciaexample.com,-20
