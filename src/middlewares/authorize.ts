@@ -11,7 +11,7 @@ export function authorize(...allowedRoles: User["role"][]) {
       next();
     } else {
         console.error('Access denied');
-        res.status(500).json({ ok: false, error: 'Access denied is not admin' });
+        res.status(403).json({ ok: false, error: 'Access denied is not admin' });
       }
     }
   };
