@@ -56,3 +56,15 @@ beforeEach(async () => {
   await db.query(query);
 });
 
+//USERS TABLE:
+describe("users API", () => {
+  beforeEach(async () => {
+    await truncateTable("users");
+    const values = testUsers
+      .map((users) => `('${users.name}','${users.password}','${users.email}', '${users.age}', '${users.role}' )`)
+      .join(", ");
+    let query = `INSERT INTO users (name, password, email, age, role) VALUES ${values} RETURNING id,content,createdat,updatedat,(SELECT u.username FROM users AS u WHERE u.id =posts.userid) AS username, 0 AS likesCount`;
+
+    await db.query(query);
+  });
+})
