@@ -27,4 +27,19 @@ describe('POST /login', () => {
         .send(invalidUserData)
         .expect(400);
     });
-   
+    //tests para ingresar correctamente un archivo csv
+    it("should upload CSV file successfully", async () => {
+    const payload = { userId: 1, userRole: "admin" };
+    const token = jwt.sign(payload, jwtSecret, { expiresIn: "60m" });
+    const res = await request(app)
+        .post("/upload")
+        .set("Authorization", `Bearer ${token}`)
+        .attach("file", "src/services/archivo.csv")
+        .expect(200);
+      expect(res.body.ok).toBeTruthy();
+    });
+  
+
+
+
+  });
