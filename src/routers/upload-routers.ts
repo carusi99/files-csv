@@ -49,8 +49,8 @@ if (!fs.existsSync(filePath)) {
 
     res.json({ ok: true, data: { success, errors: formattedErrors } });
   } catch (error) {
-    console.error('Error al procesar el archivo CSV:', error);
-    res.status(500).json({ ok: false, error: 'Error interno del servidor' });
+    console.error('Error processing CSV file:', error);
+    res.status(500).json({ ok: false, error: 'Error processing CSV file: check the file and try again' });
   }
 });
 

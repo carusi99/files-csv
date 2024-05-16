@@ -26,7 +26,8 @@ authRouter.post(
         },
       });
     } catch (error) {
-      next(error);
+      console.error('error when registering:', error);
+      res.status(400).json({ ok: false, error: 'You are not entering the data correctly, only accept email, password, age and role' });
     }
   }
 );
@@ -43,7 +44,8 @@ authRouter.post("/login", async (req, res, next) => {
         data: { token: token },
       });
     } catch (error) {
-      throw new ApiError("Credenciales inválidas", 400);
+      console.error('error when entering:', error);
+      res.status(400).json({ ok: false, error: 'You are not entering the data correctly, it only accepts email and password' });
     }
   });
   

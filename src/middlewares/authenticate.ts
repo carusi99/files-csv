@@ -19,13 +19,13 @@ export function authenticateHandler(
   res: Response,
   next: NextFunction
 ) {
-  console.log("Middleware authenticateHandler alcanzado");
+  console.log("Middleware authenticateHandler reached");
 
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    console.log("Token no encontrado en las cabeceras");
-    return next(new ApiError("No autorizado", 401));
+    console.log("Token not found in headers");
+    return next(new ApiError("Unauthorized", 401));
   }
 
   try {
@@ -40,8 +40,8 @@ export function authenticateHandler(
     req.userRole = payload.userRole;
     next();
   } catch (error: any) {
-    console.log("Error al verificar el token:", error.message);
-    const errorMessage = "No autorizado";
+    console.log("Error when verifying token:", error.message);
+    const errorMessage = "Unauthorized";
     res.status(401).json({ ok: false, data: errorMessage });
   }
 }
