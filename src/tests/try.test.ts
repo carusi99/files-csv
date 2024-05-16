@@ -42,3 +42,17 @@ const testUsers = [
   },
 ];
 
+//CLIENT TABLE:
+beforeEach(async () => {
+  await truncateTable("client");
+  const values = testClients
+    .map(
+      (user) =>
+        `('${user.name}','${user.email}','${user.age}','${user.role}')`
+    )
+    .join(", ");
+  let query = `INSERT INTO client (name, email, age, role) VALUES ${values} RETURNING *`;
+
+  await db.query(query);
+});
+
