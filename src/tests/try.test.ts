@@ -1,4 +1,4 @@
-import { describe, beforeEach, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import request from "supertest";
 import { app } from "../app";
 const jwt = require("jsonwebtoken");
@@ -26,6 +26,7 @@ describe('POST /login', () => {
         .post('/login')
         .send(invalidUserData)
         .expect(400);
+         expect(res.body.ok).toBe(false);
     });
     //tests para ingresar correctamente un archivo csv
     it("should upload CSV file successfully", async () => {

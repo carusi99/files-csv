@@ -4,7 +4,6 @@ import { validateCredentials, createUser } from "../services/auth-services";
 import jwt from "jsonwebtoken";
 import {validationHandler} from "../middlewares/validation";
 import { userSchema } from "../models/auth-models";
-import { ApiError } from "../middlewares/error";
 
 const jwtSecret = "ultra-mega-secret";
 const authRouter = express.Router();

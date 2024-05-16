@@ -1,5 +1,6 @@
 import express from "express";
 import { configDotenv } from "dotenv";
+import cors from "cors";
 import authRouter from "./routers/auth-routers";
 import uploadRouter from "./routers/upload-routers";
 
@@ -10,6 +11,12 @@ if (process.env["NODE_ENV"] === "test") {
 }
 
 export const app = express();
+
+const corsOptions = {
+  origin: process.env["CLIENT_ORIGIN"], // http:localhost:5173
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
