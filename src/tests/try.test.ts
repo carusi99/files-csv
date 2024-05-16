@@ -39,7 +39,16 @@ describe('POST /login', () => {
       expect(res.body.ok).toBeTruthy();
     });
   
-
+//tests para no permitir el acceso a usuarios no autorizados
+    it("should return 403 for unauthorized users", async () => {
+      const payload = { userId: 1, userRole: "user" }; // Rol no autorizado
+      const token = jwt.sign(payload, jwtSecret, { expiresIn: "60m" });
+    
+      await request(app)
+        .post("/upload")
+        .set("Authorization", `Bearer ${token}`)
+        .expect(403);
+    });
 
 
   });
