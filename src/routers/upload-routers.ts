@@ -17,8 +17,8 @@ uploadRouter.post('/upload', authenticateHandler, authorize('admin'), async (req
     const { success, errors } = await processCSV(filePath);
     
     // Inserta los usuarios válidos en la base de datos
+    await truncateTable('client'); 
     for (const user of success) {
-      await truncateTable('client'); 
       await db.query(
         'INSERT INTO client (name, email, age) VALUES ($1, $2, $3)',
         [user.name, user.email, user.age]

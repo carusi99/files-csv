@@ -23,7 +23,7 @@ export const query = (text: string, params?: (string | number | boolean)[]) => {
 export const adminClient = new Client({
   host: process.env["PGHOST"],
   port: Number(process.env["PGPORT"]),
-  database: process.env["PGDATABASE"],
+  database: process.env["PGUSER"],
   user: process.env["PGUSER"],
   password: process.env["PGPASSWORD"],
 });
