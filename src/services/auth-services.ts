@@ -19,6 +19,7 @@ export async function createUser(data: UserParams): Promise<User> {
       }
   } catch (error) {
       throw new ApiError("Error al verificar la existencia del usuario", 500);
+      
   }
 
   // Hashear la contraseña
@@ -43,14 +44,12 @@ export async function validateCredentials(
   ): Promise<User> {
     const { email, password } = credentials;  
     const user = await db.getUserByName(email);
-
     if (!user) {
-      throw new ApiError("Credenciales incorrectas", 400);
+      throw new ApiError("Credenciales inválidas", 400);
     }
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-      throw new ApiError("Credenciales incorrectas", 400);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new ApiError("Credenciales inválidas", 400);
     }
     return user;
-    
-  }
+    }

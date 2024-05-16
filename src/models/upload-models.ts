@@ -2,26 +2,26 @@ import { z } from "zod";
 
 export const clientSchema = z.object({
   name: z.string()
-    .min(1, { message: "El campo 'name' no puede estar vacío" })
-    .refine(value => isNaN(Number(value)), { message: "El campo 'name' no puede ser un número o cadena vacía" })
-    .refine(value => value.length <= 20, { message: "El campo 'name' no puede tener más de 20 caracteres" }),
+    .min(1, { message: "The 'name' field cannot be empty" })
+    .refine(value => isNaN(Number(value)), { message: "The 'name' field cannot be a number or empty string" })
+    .refine(value => value.length <= 20, { message: "The 'name' field cannot be more than 20 characters" }),
 
   email: z.string()
-    .min(1, { message: "El campo 'email' no puede estar vacío." })
-    .email({ message: "El formato del correo electrónico es inválido, falta @" }),
+    .min(1, { message: "The 'email' field cannot be empty" })
+    .email({ message: "Email format is invalid, missing @" }),
     age: z.number()
-    .min(1, { message: "El campo 'age' debe ser un número mayor a 0"})
+    .min(1, { message: "The 'age' field must be a number greater than 0"})
     .int()
-    .positive({ message: "El campo 'age' debe ser un número positivo" })
+    .positive({ message: "The 'age' field must be a positive number" })
     .transform(value => {
       const parsedValue = Number(value);
       if (isNaN(parsedValue)) {
-        throw new Error("Solo se aceptan números en el campo 'age'.");
+        throw new Error("Expected number, received nan");
       }
       return parsedValue;
     }),
     role: z.enum(["admin", "user"], {
-        errorMap: () => ({ message: "El rol debe ser admin o user"}),
+        errorMap: () => ({ message: "The role must be admin or user"}),
       }).default("user"),
 });
 

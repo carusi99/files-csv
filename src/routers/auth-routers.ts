@@ -4,6 +4,7 @@ import { validateCredentials, createUser } from "../services/auth-services";
 import jwt from "jsonwebtoken";
 import {validationHandler} from "../middlewares/validation";
 import { userSchema } from "../models/auth-models";
+import { ApiError } from "../middlewares/error";
 
 const jwtSecret = "ultra-mega-secret";
 const authRouter = express.Router();
@@ -19,6 +20,7 @@ authRouter.post(
         message: "Usuario registrado exitosamente",
         data: {
           id: newUser.id,
+          name: newUser.name,
           email: newUser.email,
           role: newUser.role,
         },
@@ -41,7 +43,7 @@ authRouter.post("/login", async (req, res, next) => {
         data: { token: token },
       });
     } catch (error) {
-      next(error);
+      throw new ApiError("Credenciales inválidas", 400);
     }
   });
   

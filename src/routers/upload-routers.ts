@@ -3,15 +3,18 @@ import { processCSV } from '../data/upload-data';
 import { authenticateHandler } from '../middlewares/authenticate';
 import { authorize } from '../middlewares/authorize';
 import * as db from '../db';
-import { truncate } from 'fs';
 import { truncateTable } from '../db/utils';
 const path = require('path');
+const fs = require('fs');
 
 const uploadRouter = express.Router();
 
 
 uploadRouter.post('/upload', authenticateHandler, authorize('admin'), async (req, res) => {
   const filePath = path.join(__dirname, '../services/archivo.csv');
+if (!fs.existsSync(filePath)) {
+  return res.status(500).json({ ok: false, error: 'El archivo no existe' });
+}
   
   try {
     const { success, errors } = await processCSV(filePath);
