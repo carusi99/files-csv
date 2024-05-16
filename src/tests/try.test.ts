@@ -19,4 +19,12 @@ describe('POST /login', () => {
       // You can add more assertions here to ensure the token is valid
     });
 
+    it('should return 400 for invalid login credentials', async () => {
+      // Provide invalid login credentials
+      const invalidUserData = { email: 'test@example.com', password: 'invalidpassword' };
+      const res = await request(app)
+        .post('/login')
+        .send(invalidUserData)
+        .expect(400);
+    });
    
