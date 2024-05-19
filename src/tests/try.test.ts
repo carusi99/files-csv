@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import request from "supertest";
 import { app } from "../app";
+import path from "node:path";
 const jwt = require("jsonwebtoken");
 const jwtSecret = "ultra-mega-secret";
 
@@ -30,13 +31,16 @@ describe('POST /login', () => {
     });
     //tests para ingresar correctamente un archivo csv
     it("should upload CSV file successfully", async () => {
-    const payload = { userId: 1, userRole: "admin" };
-    const token = jwt.sign(payload, jwtSecret, { expiresIn: "60m" });
-    const res = await request(app)
+      const payload = { userId: 1, userRole: "admin" };
+      const token = jwt.sign(payload, jwtSecret, { expiresIn: "60m" });
+      const filePath = path.join(__dirname, '../models/file.csv'); // Ruta al archivo CSV de prueba
+  
+      const res = await request(app)
         .post("/upload")
         .set("Authorization", `Bearer ${token}`)
-        .attach("file", "src/services/archivo.csv")
+        .attach("csvFile", filePath)
         .expect(200);
+  
       expect(res.body.ok).toBeTruthy();
     });
   
