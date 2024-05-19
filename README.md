@@ -19,12 +19,16 @@ Es necesario tener Node.js, npm, y PostgreSQL instalados en tu entorno de desarr
 
 ### dependencias utilizadas 
 
+  "dependencies"
+    "@types/cors": "^2.8.17",
+    "@types/multer": "^1.4.11",
     "bcrypt": "^5.1.1",
-    "csv": "^6.3.9",
+    "cors": "^2.8.5",
     "csv-parse": "^5.5.6",
     "dotenv": "^16.3.1",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "pg": "^8.11.5",
     "umzug": "^3.8.0",
     "vitest": "^1.6.0",
@@ -110,6 +114,7 @@ La aplicación sigue una arquitectura de tres capas:
 #### POST / upload (Archivo CSV)
 
 - **Descripción**: Permite a un usuario autenticado y autorizado con el rol de admin, ingresar usuarios a la base de datos.
+- **body**: En thunder client de visual studio code, puedes ingresar a `form` y en file colocar el name y seleccionar el archivo csv
 - **Respuesta**: Se muestran los usuarios ingresados correctamente que se incorporan a la base de datos y los que no ingresan por errores al traspasarlos.
 
 ## Ejemplos de solicitudes
@@ -161,6 +166,14 @@ La aplicación sigue una arquitectura de tres capas:
 ##### POST /upload (ver archivos preocesados y no procesados)
 
 **Descripción:** Muestra el perfil de los usuarios que están igresados de manera correcta a la base de datos, y los que no.
+- **Body**:
+  - En thunder client de visual studio code, puedes ingresar a `form` y en `file` colocar el nombre del campo del formulario que se va a procesar y seleccionar el archivo csv, además es necesario que en `Auth`, luego en `bearer`, proporcionar el token del usuario `admin`.
+
+### Ejemplo:
+![image](https://github.com/carusi99/files-csv/assets/151582174/a4528f32-6fa4-4192-81f9-7875289d0447)
+
+![image](https://github.com/carusi99/files-csv/assets/151582174/f07c9a25-b871-49f1-8dce-7e685e11aa51)
+    
 
 **Respuesta:**
 
