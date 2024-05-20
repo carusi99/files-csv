@@ -14,6 +14,9 @@ export const pool = new Pool({
   database: process.env["PGDATABASE"],
   user: process.env["PGUSER"],
   password: process.env["PGPASSWORD"],
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 export const query = (text: string, params?: (string | number | boolean)[]) => {
