@@ -6,7 +6,7 @@ import { authenticateHandler } from '../middlewares/authenticate';
 import { authorize } from '../middlewares/authorize';
 import { processCSV } from '../data/upload-data';
 import * as db from '../db';
-import { truncateTable } from '../db/utils';
+// import { truncateTable } from '../db/utils';
 
 const uploadRouter = express.Router();
 
@@ -48,7 +48,7 @@ uploadRouter.post('/upload', authenticateHandler, authorize('admin'), upload.sin
 
     await db.query('BEGIN'); // Iniciar una transacción para insertar datos
     try {
-      await truncateTable('client'); // Asegúrate de que esta función esté funcionando correctamente
+      // await truncateTable('client'); // Asegúrate de que esta función esté funcionando correctamente
       console.log('Tabla truncada. Insertando nuevos datos...');
 
       const values = success.map((user) => `('${user.name}', '${user.email}', ${user.age})`).join(', ');
