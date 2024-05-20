@@ -26,7 +26,7 @@ authRouter.post(
       });
     } catch (error) {
       console.error('error when registering:', error);
-      res.status(400).json({ ok: false, error: 'You are not entering the data correctly, only accept email, password, age and role' });
+      res.status(400).json({ ok: false, error: 'You are not entering the data correctly, only accept name, email, password, age and role' });
     }
   }
 );
