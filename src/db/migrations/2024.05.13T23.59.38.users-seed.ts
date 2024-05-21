@@ -1,7 +1,7 @@
 import { Migration } from "../scripts/dbMigrate";
 import { faker } from  "@faker-js/faker";
 
-export type User = {
+export type User = { // Definir el tipo de objeto de usuario
   name: string;
   password: string;
   email: string;
@@ -27,9 +27,9 @@ export function generateUser(): User {
 }
 
 export const up: Migration = async (params) => {
-  const users: User[] = [];
+  const users: User[] = []; // Crear un arreglo vacía para almacenar los usuarios
   for (let i = 0; i < 5; i++) {
-    users.push(generateUser());
+    users.push(generateUser()); // Agregar 5 usuarios al arreglo
   }
 
   const values = users

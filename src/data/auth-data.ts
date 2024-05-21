@@ -2,6 +2,7 @@ import { User, UserParams } from "../models/auth-models";
 import * as db from "../db";
 import { ApiError } from "../middlewares/error";
 
+//function para crear el usuario en signup
 export async function createUsers(user: UserParams): Promise<User> {
   const query =
   `INSERT INTO users 

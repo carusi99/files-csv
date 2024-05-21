@@ -8,17 +8,17 @@ export async function createUser(data: UserParams): Promise<User> {
 
   // Verificar la longitud de la contraseña
   if (password.length < 6) {
-      throw new ApiError("La contraseña debe tener al menos 6 caracteres", 400);
+      throw new ApiError("The password must be at least 6 characters", 400);
   }
 
   // Verificar la existencia del usuario
   try {
       const user = await db.getUserByName(email);
       if (user) {
-          throw new ApiError("El email ya está registrado", 400);
+          throw new ApiError("The email is already registered", 400);
       }
   } catch (error) {
-      throw new ApiError("Error al verificar la existencia del usuario", 500);
+      throw new ApiError("Error verifying user existence", 500);
       
   }
 
@@ -31,8 +31,8 @@ export async function createUser(data: UserParams): Promise<User> {
       const newUser = await db.createUsers({ ...data, password: hashedPassword });
       return newUser;
   } catch (error) {
-    console.error("Error al crear el usuario en la base de datos:", error);
-      throw new ApiError("Error al crear el usuario", 500);
+    console.error("Error creating user in database:", error);
+      throw new ApiError("Error creating user", 500);
   }
 }
 
@@ -45,11 +45,11 @@ export async function validateCredentials(
     const { email, password } = credentials;  
     const user = await db.getUserByName(email);
     if (!user) {
-      throw new ApiError("Credenciales inválidas", 400);
+      throw new ApiError("Invalid credentials", 400);
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new ApiError("Credenciales inválidas", 400);
+      throw new ApiError("Invalid credentials", 400);
     }
     return user;
     }

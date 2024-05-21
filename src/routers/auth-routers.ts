@@ -10,13 +10,13 @@ const authRouter = express.Router();
 
 authRouter.post(
   "/signup",
-  validationHandler(userSchema),
+  validationHandler(userSchema), // Validar los datos antes de crear el usuario
   async (req, res, next) => {
     try {
-      const newUser = await createUser(req.body);
+      const newUser = await createUser(req.body); // Crear el usuario
       res.status(201).json({
         ok: true,
-        message: "Usuario registrado exitosamente",
+        message: "User created successfully", 
         data: {
           id: newUser.id,
           name: newUser.name,
@@ -34,12 +34,12 @@ authRouter.post(
 
 authRouter.post("/login", async (req, res, next) => {
     try {
-      const user = await validateCredentials(req.body);
-      const payload = { userId: user.id, userRole: user.role };
-      const token = jwt.sign(payload, jwtSecret, { expiresIn: "60m" });
+      const user = await validateCredentials(req.body); // Validar las credenciales del usuario
+      const payload = { userId: user.id, userRole: user.role }; // Crear el payload para el token JWT 
+      const token = jwt.sign(payload, jwtSecret, { expiresIn: "60m" }); // Crear el token JWT
       res.json({
         ok: true,
-        message: "Login exitoso",
+        message: "User logged in successfully",
         data: { token: token },
       });
     } catch (error) {
