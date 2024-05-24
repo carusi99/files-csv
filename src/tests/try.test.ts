@@ -49,7 +49,7 @@ describe('POST /login', () => {
         .expect(403);
     });
 
-  //tests para no permitir usuarios no autehticados a subir archivos 
+  //tests para no permitir usuarios no autenticados para subir archivos 
     it("should return 401 for unauthenticated users", async () => {
       await request(app).post("/upload").expect(401);
     });

@@ -53,3 +53,17 @@ export async function validateCredentials(
     }
     return user;
     }
+
+    export async function deleteUsers(id: number): Promise<User | undefined> {
+      return await db.deleteUser(id);
+    }
+
+    export async function updateUsers(id: number, user: User) {
+      const dataUser = {
+        id,
+        fieldsToUpdate: user,
+      };
+      const updateProfile: User = await db.editUser(dataUser);
+      return updateProfile;
+    }
+    
