@@ -117,7 +117,7 @@ La aplicación sigue una arquitectura de tres capas:
 - **Body**: Permite actualizar campos como `email`, `name`, `age`.
 - **Respuesta**: Actualiza
 
-#### DELETE /change/:id/ (Eliminar Like de un Cliente)
+#### DELETE /:id (Eliminar un Cliente)
 
 - **Descripción**: Permite a un usuario autenticado y autorizado eliminar un usuario de client.
 - **Respuesta**: Elimina el "usuario(id)" de la tabla y devuelve  "ok": true.
@@ -174,7 +174,7 @@ La aplicación sigue una arquitectura de tres capas:
       }
     }
     ```
-##### POST /change/:id (editar datos del Cliente)
+##### PATCH /change/:id (editar datos del Cliente)
 - **Descripción**: Permite a un usuario hacer cambios en el cliente.
 - **Body**:
   -  `password`, `email`, `name`, `age`: todas opcionales
