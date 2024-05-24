@@ -76,7 +76,6 @@ uploadRouter.post('/upload', authenticateHandler, authorize('admin'), upload.sin
 
       return res.json({ ok: true, data: { success: insertUsers.rows, errors: formattedErrors } }); // Retorna los datos insertados y los errores
     } catch (dbError) {
-      await db.query('ROLLBACK'); // Rechazar la transacción para insertar los datos si hay un error 
       console.error('Error inserting data into database:', dbError); // Log para verificar el error de inserción
       throw dbError;
     }
