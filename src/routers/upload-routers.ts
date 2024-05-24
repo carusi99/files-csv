@@ -1,7 +1,6 @@
 import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
-import { unlinkSync } from 'fs';
 import { authenticateHandler } from '../middlewares/authenticate';
 import { authorize } from '../middlewares/authorize';
 import { processCSV } from '../data/upload-data';
@@ -81,9 +80,6 @@ uploadRouter.post('/upload', authenticateHandler, authorize('admin'), upload.sin
     }
   } catch (error) { // Captura los errores de procesamiento del archivo CSV
     console.error('Error processing CSV file:', error);
-    if (req.file) {
-      unlinkSync(req.file.path); // Elimina el archivo subido si hay un error en el procesamiento
-    }
     return res.status(500).json({ ok: false, error: 'Error processing CSV file: data cannot be repeated or incorrect format' }); 
   }
 });
