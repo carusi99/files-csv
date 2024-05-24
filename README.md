@@ -2,6 +2,8 @@
 
 Este proyecto presenta una API RESTful que simula un ámbito de trabajo para el ingreso de datos de usuarios , permitiendo a un "admin", insertar los usuarios desde un archivo csv. La API maneja diferentes operaciones basadas en la autenticación y la autorización del usuario.
 
+### API: https://files-csv.onrender.com
+
 ## Tabla de Contenidos
 
 1. [Requisitos](#requisitos)
@@ -20,19 +22,19 @@ Es necesario tener Node.js, npm, y PostgreSQL instalados en tu entorno de desarr
 ### dependencias utilizadas 
 
   "dependencies"
-    "@types/cors": "^2.8.17",
-    "@types/multer": "^1.4.11",
-    "bcrypt": "^5.1.1",
-    "cors": "^2.8.5",
-    "csv-parse": "^5.5.6",
-    "dotenv": "^16.3.1",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "multer": "^1.4.5-lts.1",
-    "pg": "^8.11.5",
-    "umzug": "^3.8.0",
-    "vitest": "^1.6.0",
-    "zod": "^3.23.4"
+  - "@types/cors": "^2.8.17",
+  - "@types/multer": "^1.4.11",
+  -  "bcrypt": "^5.1.1",
+  -  "cors": "^2.8.5",
+  -  "csv-parse": "^5.5.6",
+  -  "dotenv": "^16.3.1",
+  -  "express": "^4.19.2",
+  -  "jsonwebtoken": "^9.0.2",
+  -  "multer": "^1.4.5-lts.1",
+  -  "pg": "^8.11.5",
+  -  "umzug": "^3.8.0",
+  -  "vitest": "^1.6.0",
+  -  "zod": "^3.23.4"
 
 
 ## Instalación
@@ -273,6 +275,14 @@ En este proyecto, utilizamos JSON Web Token (JWT) para gestionar la autenticaci�
 
 4. **Verificación del Token:**
    - En cada solicitud a un recurso protegido, el servidor verifica la validez del token JWT recibido. Si el token es válido, se permite el acceso al recurso protegido.
+  
+## ¿Cómo puedo hacer test de la API?
+
+Puedes probar la funcionalidad de los puntos finales implementando las bibliotecas Vitest y SuperTest.
+
+```bash
+npm run test
+```
 
 ## Contribuciones
 
