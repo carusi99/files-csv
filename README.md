@@ -111,6 +111,18 @@ La aplicación sigue una arquitectura de tres capas:
 - **Body**: `password`, `email` - Credenciales requeridas para el inicio de sesión.
 - **Respuesta**: Inicia sesión y devuelve un token JWT.
 
+#### PATCH /change/:id (Editar Cliente)
+
+- **Descripción**: Permite al usuario autenticado y autorizado editar información de perfil del cliente.
+- **Body**: Permite actualizar campos como `email`, `name`, `age`.
+- **Respuesta**: Actualiza
+
+#### DELETE /change/:id/ (Eliminar Like de un Cliente)
+
+- **Descripción**: Permite a un usuario autenticado y autorizado eliminar un usuario de client.
+- **Respuesta**: Elimina el "usuario(id)" de la tabla y devuelve  "ok": true.
+
+
 ### Gestión de ingreso de usuarios
 
 #### POST / upload (Archivo CSV)
@@ -162,6 +174,41 @@ La aplicación sigue una arquitectura de tres capas:
       }
     }
     ```
+##### POST /change/:id (editar datos del Cliente)
+- **Descripción**: Permite a un usuario hacer cambios en el cliente.
+- **Body**:
+  -  `password`, `email`, `name`, `age`: todas opcionales
+- **Respuesta**:
+  - `200 OK`: "User updated successfully".
+  - `401 Unauthorized`:"Unauthorized"
+ ```json
+{
+  "ok": true,
+  "message": "User updated successfully",
+  "data": {
+    "id": 37,
+    "name": "laptop",
+    "email": "jom@gmail.com",
+    "age": 24
+  }
+}
+ ```
+##### DELETE /:id (Eliminar un Cliente)
+
+- **Descripción**: Permite a un usuario eliminar un cliente.
+- **Parámetros**:
+  - `change`: ID del Cliente.
+- **Respuesta**:
+  - `200 OK`: eliminado.
+  - `401 Unauthorized`: Si el usuario no está autenticado.
+
+  - **Ejemplo de Respuesta**:
+ ```json
+{
+  "ok": true,
+  "message": "User deleted successfully",
+}
+ ```
 
 #### Gestión de Archivos CSV 
 
